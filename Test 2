@@ -1,0 +1,28 @@
+package HangHaeTest.Test2_0413;
+
+public class Main {
+    public int solution(String s) {
+        int answer = 0;
+        int score = 0;
+
+        for(int i = 0; i < s.length(); i++){
+            if (s.charAt(i) == 'O'){ //s는 String임으로 하나씩을 가져오기 위해 charAt!!! -> charAt 사용할때 ""이 아닌 '' 필수
+                score++; // 만약 O와 동일하면 score + 1
+                answer = answer + score; // answer + score해주기
+            } else if (s.charAt(i) == 'X') { //만약 x를 받게될 경우 0
+                score = 0;
+            }
+        }
+
+        return answer;
+    }
+
+    public static void main(String[] args) {
+        Main method = new Main();
+        String s = "OXOOOXXXOXOOXOOOOOXO";
+        System.out.println(method.solution(s));
+    }
+}
+
+// s의 O,X에 따라가서 점수 true or false / if 문?
+// O이 연속될 경우에는 +1 증가, X가 있으면 Reset (for문 돌려서 i값을 reset?)
