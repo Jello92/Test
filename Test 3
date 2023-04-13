@@ -1,0 +1,46 @@
+package HangHaeTest.Test3_0413;
+
+import java.util.*;
+
+public class Main {
+    public char[][] solution(int N, char[][] ary) {
+        int[] x = {1, -1, 0, 0, 1, 1, -1, -1};
+        int[] y = {0, 0, 1, -1, 1, -1, 1, -1};
+        char[][] answer = new char[N][N];
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (Character.isDigit(ary[i][j])) {
+                    answer[i][j] = '*';
+                } else {
+                    int sum = 0;
+                    for (int k = 0; k < 8; k++) {
+                        int nx = i + x[k];
+                        int ny = j + y[k];
+                        if (nx >= 0 && nx < N && ny >= 0 && ny < N && Character.isDigit(ary[nx][ny])) {
+                            sum += Character.getNumericValue(ary[nx][ny]);
+                        }
+                    }
+                    if (sum == 0) {
+                        answer[i][j] = '0';
+                    } else if (sum >= 10){
+                        answer[i][j] = 'M';
+                    } else {
+                        answer[i][j] = (char) (sum + '0');
+                    }
+                }
+            }
+        }
+        return answer;
+    }
+
+    public static void main(String[] args) {
+        Main method = new Main();
+        int N = 4;
+        char[][] chars= {{'2', '.', '.', '.',},
+                        {'.', '.', '9', '.'},
+                        {'.', '3', '.', '2'},
+                        {'.', '4', '.', '.'}};
+        System.out.println(Arrays.deepToString(method.solution(N, chars)));
+    }
+}
