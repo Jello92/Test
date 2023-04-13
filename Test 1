@@ -1,0 +1,26 @@
+package HangHaeTest.Test1_0413;
+
+public class Main {
+    public int solution(int num) {
+        int change = 1000 - num; // 총 잔돈 값 찾기
+        int[] c = {500, 100, 50, 10}; // 잔돈 array
+        int numC = 0; // 잔돈 넣을 박스 구축
+
+        for(int i = 0; i < c.length; i++){
+            numC += change / c[i]; // 잔돈 넣을 박스에 잔돈 / 500원, 100원, 50원, 10원 돌리기
+            change = change % c[i]; //남은 잔돈은 다시 돌려 줌
+        }
+        return numC; //잔돈 박스 콜
+    }
+
+    public static void main(String[] args) {
+        Main method = new Main();
+        int num1 = 320;  // 8
+        System.out.println(method.solution(num1));
+    }
+}
+
+// 1. 1,000원이 있고 p원의 물건을 샀을때 계산 1,000 - p
+// 2. 남은 돈을 500, 100, 50, 10 을 사용하여 리턴
+// 3. 잔돈 종류 array를 만든 후 for문 돌리기
+// 4. for문 돌리면서 잔돈과 나눠서 적립 후 남는 금액은 계속 돌리기?
